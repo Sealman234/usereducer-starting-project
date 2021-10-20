@@ -33,9 +33,10 @@ function App() {
       value={{
         // Listen state (isLoggedIn) changes, and pass down to all components we consume this Context
         isLoggedIn: isLoggedIn,
+        onLogout: logoutHandler,
       }}
     >
-      <MainHeader onLogout={logoutHandler} />
+      <MainHeader />
       <main>
         {!isLoggedIn && <Login onLogin={loginHandler} />}
         {isLoggedIn && <Home onLogout={logoutHandler} />}
