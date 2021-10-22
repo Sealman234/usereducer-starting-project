@@ -33,15 +33,10 @@ const passwordReducer = (state, action) => {
 };
 
 const Login = (props) => {
-  // const [enteredEmail, setEnteredEmail] = useState("");
-  // const [emailIsValid, setEmailIsValid] = useState();
   const [emailState, dispatchEmail] = useReducer(emailReducer, {
     value: '',
     isValid: null,
   });
-
-  // const [enteredPassword, setEnteredPassword] = useState("");
-  // const [passwordIsValid, setPasswordIsValid] = useState();
   const [passwordState, dispatchPassword] = useReducer(passwordReducer, {
     value: '',
     isValid: null,
@@ -111,10 +106,10 @@ const Login = (props) => {
       authCtx.onLogin(emailState.value, passwordState.value);
     } else if (!emailIsValid) {
       // Focus email input automatically
-      emailInputRef.current.focus();
+      emailInputRef.current.myFocus();
     } else {
       // Focus password input automatically
-      passwordInputRef.current.focus();
+      passwordInputRef.current.myFocus();
     }
   };
 
