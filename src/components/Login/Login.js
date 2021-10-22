@@ -55,6 +55,7 @@ const Login = (props) => {
 
   // 監聽的 xxxIsValid 要用解構，或者用點存取 (passwordState.isValid) 兩者皆可
   const { isValid: emailIsValid } = emailState;
+  const { isValid: passwordIsValid } = passwordState;
   // 最後的表單驗證用 useEffect 監聽 emailState 與 passwordState 的變化
   // 重點：只檢查驗證結果 (xxxIsValid) 是否改變，不會每個更動都監聽
   useEffect(() => {
@@ -112,20 +113,15 @@ const Login = (props) => {
           onChange={emailChangeHandler}
           onBlur={validateEmailHandler}
         ></Input>
-        <div
-          className={`${classes.control} ${
-            passwordState.isValid === false ? classes.invalid : ''
-          }`}
-        >
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            value={passwordState.value}
-            onChange={passwordChangeHandler}
-            onBlur={validatePasswordHandler}
-          />
-        </div>
+        <Input
+          isValid={passwordIsValid}
+          label="Password"
+          id="password"
+          type="password"
+          value={passwordState.value}
+          onChange={passwordChangeHandler}
+          onBlur={validatePasswordHandler}
+        ></Input>
         <div className={classes.actions}>
           <Button type="submit" className={classes.btn} disabled={!formIsValid}>
             Login
